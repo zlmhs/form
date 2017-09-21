@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery.js"></script>
+<script src="jquery.form.js"></script>
+</head>
+<body>
+  <form id="myform" method="post" enctype="multipart/form-data" action="http://192.168.0.114:8080/libomo-web/web/tVideoUpload/up.do">
+    <!-- capture表示，可以捕获到系统默认的设备，比如：camera--照相机；camcorder--摄像机；microphone--录音。
+  accept表示，直接打开系统文件目录。 -->
+      <!-- <input type="file" accept="video/*" name="filename" capture="camcorder"> -->
+      <input id="fileBtn" type="file" accept="video/*" name="filename">
+      <button>提交</button>
+    </form>
+
+  <script>
+  $(function(){
+      $("#myform").ajaxForm({
+          //定义返回JSON数据，还包括xml和script格式
+          dataType:'json',
+          beforeSend: function() {
+              //表单提交前做表单验证
+          },
+          success: function(data) {
+              //提交成功后调用
+              alert(data.data.url);
+          }
+      });
+  });
+
+  </script>
+</body>
+</html>
